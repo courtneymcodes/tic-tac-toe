@@ -1,0 +1,28 @@
+body {
+    padding: 0;
+    margin: 0; 
+    background-color:lightslategray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+    font-size: 75px;
+}
+
+#board {
+    display:flex;
+    flex-wrap:wrap;
+    width: 399px;  /* (div width*3) + outline + border */
+    height: 399px;  
+    
+}
+
+.squares {
+    background-color:whitesmoke;
+    border: 3px lightslategray solid;
+    width: 125px;
+    height: 125px;
+    outline: 3px whitesmoke solid;
+}
