@@ -26,17 +26,19 @@ allSquares.forEach((square, index) => {
         if (square.style.backgroundColor === "") {
           //if its player 1's turn, turn square to player1Color, else turn it to player2's color
           currentPlayerTurn === 1 ? square.style.backgroundColor = player1.color : square.style.backgroundColor = player2.color
-          //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
-          currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
           //push the id of selected square to current player's positions array
           currentPlayerTurn === 1 ? player1.positions.push(square.id) : player2.positions.push(square.id)
           //if player1's turn, check if player1 has won. If not then its player2's turn, check if player2 has won
           currentPlayerTurn === 1 ? checkWinner(player1) : checkWinner(player2)
           //when player wins, displayWinner else update current player display
           if(playerWon === true){
-            
-          }else  //if no winner yet, call currentPlayerDisplays functions to updat ecurrent player display
+            displayWinner()
+          }else {//if no winner yet:
+          //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
+          currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
+          //call currentPlayerDisplays functions to updat ecurrent player display
           currentPlayerDisplays(currentPlayerTurn)
+          }
         }
     }) 
 })
@@ -73,4 +75,16 @@ function currentPlayerDisplays(currentPlayerTurn){
     currentTurnDisplay.textContent = "Player 2's turn"
     currentColorDisplay.style.backgroundColor = player2.color
   }
+}
+
+
+function displayWinner() {
+    //replace cuurentTurnDisplay with winning message
+    if(currentPlayerTurn === 1){
+        currentTurnDisplay.textContent = "Player 1 wins!"
+        console.log(currentTurnDisplay.textContent)
+      }else {
+        //if player 2's turn, update displays to player 2
+        currentTurnDisplay.textContent = "Player 2 wins!"
+      }
 }
