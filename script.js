@@ -15,6 +15,8 @@ let player2 = new Player('green')
 let currentPlayerTurn = 1
 
 const allSquares = document.querySelectorAll('.squares')
+const currentTurnDisplay = document.querySelector('#current-turn-display')
+const currentColorDisplay = document.querySelector('#current-color-display')
 
 //give each square an id and add event listener
 allSquares.forEach((square, index) => {
@@ -30,7 +32,11 @@ allSquares.forEach((square, index) => {
           currentPlayerTurn === 1 ? player1.positions.push(square.id) : player2.positions.push(square.id)
           //if player1's turn, check if player1 has won. If not then its player2's turn, check if player2 has won
           currentPlayerTurn === 1 ? checkWinner(player1) : checkWinner(player2)
-          //when player wins, call displayWinner function
+          //when player wins, displayWinner else update current player display
+          if(playerWon === true){
+            
+          }else  //if no winner yet, call currentPlayerDisplays functions to updat ecurrent player display
+          currentPlayerDisplays(currentPlayerTurn)
         }
     }) 
 })
@@ -40,7 +46,6 @@ const winningCombinations = ['012', '345', '678', '048', '246']
 
 //variable to track if a player has won 
 let playerWon = false
-
 
 function checkWinner(player) {
   let currentPlayerPositions = player.positions  //get array of current player's positions
@@ -55,7 +60,17 @@ function checkWinner(player) {
     if(check0 >= 0 && check1 >= 0 && check2 >= 0) {
         playerWon = true
     }
-    console.log(`playerWon: ${playerWon}`)
 })  
 }
 
+function currentPlayerDisplays(currentPlayerTurn){
+    //if player 1's turn update displays to player 1
+  if(currentPlayerTurn === 1){
+    currentTurnDisplay.textContent = "Player 1's turn"
+    currentColorDisplay.style.backgroundColor = player1.color
+  }else {
+    //if player 2's turn, update displays to player 2
+    currentTurnDisplay.textContent = "Player 2's turn"
+    currentColorDisplay.style.backgroundColor = player2.color
+  }
+}
