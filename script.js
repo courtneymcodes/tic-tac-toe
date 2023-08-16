@@ -30,6 +30,7 @@ allSquares.forEach((square, index) => {
           currentPlayerTurn === 1 ? player1.positions.push(square.id) : player2.positions.push(square.id)
           //if player1's turn, check if player1 has won. If not then its player2's turn, check if player2 has won
           currentPlayerTurn === 1 ? checkWinner(player1) : checkWinner(player2)
+          //when player wins, call displayWinner function
         }
     }) 
 })
@@ -38,7 +39,7 @@ allSquares.forEach((square, index) => {
 const winningCombinations = ['012', '345', '678', '048', '246']
 
 //variable to track if a player has won 
-let playerWon; 
+let playerWon = false
 
 
 function checkWinner(player) {
@@ -50,8 +51,10 @@ function checkWinner(player) {
     let check0 = currentPlayerPositions.search(combination[0])  //the search method returns -1 if not found or the position if is found
     let check1 = currentPlayerPositions.search(combination[1])
     let check2 = currentPlayerPositions.search(combination[2])
-    //if all numbers in the current combination exist in the playerPositions array, set winner to true. If not, set winner to false
-    check0 >= 0 && check1 >= 0 && check2 >= 0 ? playerWon = true : playerWon = false
+    //if all numbers in the current combination exist in the playerPositions array, set playerWon to true
+    if(check0 >= 0 && check1 >= 0 && check2 >= 0) {
+        playerWon = true
+    }
     console.log(`playerWon: ${playerWon}`)
 })  
 }

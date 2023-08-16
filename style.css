@@ -3,7 +3,7 @@ body {
     margin: 0; 
     background-color:lightslategray;
     display: flex;
-    flex-direction: column;
+    flex-direction: column;  /* #title h1 and #container div  */
     align-items: center;
 }
 
@@ -11,12 +11,36 @@ body {
     font-size: 75px;
 }
 
+/* create a row containing #current, #board and #wins */
+#container {
+    display:flex;
+    font-size: 30px;
+}
+
 #board {
     display:flex;
     flex-wrap:wrap;
     width: 399px;  /* (div width*3) + outline + border */
     height: 399px;  
+    margin: 30px;
     
+}
+
+#current-displays {
+    font-size: 35px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;  /* center its contents*/
+}
+
+#current-color-display {
+    background-color:red;
+    width: 75px;
+    height: 75px;
+}
+
+#wins {
+    font-size: 25px;
 }
 
 .squares {
