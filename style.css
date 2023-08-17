@@ -50,3 +50,11 @@ body {
     height: 125px;
     outline: 3px whitesmoke solid;
 }
+
+#new-game {
+    margin-top: 30px;
+    padding: 1em;
+    border-radius: 1em;
+    background-color:whitesmoke;
+    display: none;  /* starts off hidden */
+}
