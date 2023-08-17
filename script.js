@@ -33,18 +33,22 @@ allSquares.forEach((square, index) => {
           //when player wins, displayWinner else update current player display
           if(playerWon === true){
             displayWinner()
-          }else {//if no winner yet:
+            square.removeEventListener
+          }else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
+            displayTie()
+          }else {//if no winner or tie yet:
           //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
           currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
           //call currentPlayerDisplays functions to updat ecurrent player display
           currentPlayerDisplays(currentPlayerTurn)
           }
+          
         }
     }) 
 })
 
 //indexes player needs in player.positions to win
-const winningCombinations = ['012', '345', '678', '048', '246']
+const winningCombinations = ['012', '345', '678', '036', '147', '258', '048', '246']
 
 //variable to track if a player has won 
 let playerWon = false
@@ -65,6 +69,7 @@ function checkWinner(player) {
 })  
 }
 
+
 function currentPlayerDisplays(currentPlayerTurn){
     //if player 1's turn update displays to player 1
   if(currentPlayerTurn === 1){
@@ -77,7 +82,6 @@ function currentPlayerDisplays(currentPlayerTurn){
   }
 }
 
-
 function displayWinner() {
     //replace cuurentTurnDisplay with winning message
     if(currentPlayerTurn === 1){
@@ -88,3 +92,8 @@ function displayWinner() {
         currentTurnDisplay.textContent = "Player 2 wins!"
       }
 }
+
+function displayTie() {
+  currentTurnDisplay.textContent = "It's a tie"
+}
+
