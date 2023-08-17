@@ -40,6 +40,8 @@ function handleClick(e) {
         //when player wins, displayWinner else update current player display
         if(playerWon === true){
           displayWinner()
+        } else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
+          displayTie()
         }else {//if no winner yet:
         //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
         currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
@@ -50,7 +52,7 @@ function handleClick(e) {
     }
 
 //indexes player needs in player.positions to win
-const winningCombinations = ['012', '345', '678', '048', '246']
+const winningCombinations = ['012', '345', '678', '036', '147', '258', '048', '246']
 
 //variable to track if a player has won 
 let playerWon = false
@@ -93,4 +95,8 @@ function displayWinner() {
       //if player 2's turn, update displays to player 2
       currentTurnDisplay.textContent = "Player 2 wins!"
     }
+}
+
+function displayTie() {
+  currentTurnDisplay.textContent = "It's a tie"
 }
