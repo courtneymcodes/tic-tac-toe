@@ -5,6 +5,10 @@ class Player {
       this.positions = [],
       this.wins = 0
   }
+
+  addWin() {
+    this.wins += 1
+  }
 }
 
 //create players
@@ -17,15 +21,21 @@ let currentPlayerTurn = 1
 //variable to track if a player has won 
 let playerWon = false
 
+//add sound effects
+const winSound = new Audio('sound/win.wav')
+const clickSound = new Audio('sound/clickSquare.wav')
+const tieSound = new Audio('sound/tie.mp3')
+
 const allSquares = document.querySelectorAll('.squares')
 const currentTurnDisplay = document.querySelector('#current-turn-display')
 const currentColorDisplay = document.querySelector('#current-color-display')
 const newGameButton = document.querySelector('#new-game')
+const displayWinCountPlayer1 = document.querySelector('#win-count-p1')
+const displayWinCountPlayer2 = document.querySelector('#win-count-p2')
 
 startGame();
 
 function startGame() {
-  console.log(playerWon)
   allSquares.forEach((square, index) => {
     square.id = index  //give each square an id of index
     square.addEventListener('click', handleClick) //add event listener to each square
@@ -36,6 +46,7 @@ function handleClick(e) {
   const square = e.target
       //make sure clicked square has not been clicked yet
       if (square.style.backgroundColor === "") {
+        clickSound.play()  //play sound when click on square
         //if its player 1's turn, turn square to player1Color, else turn it to player2's color
         currentPlayerTurn === 1 ? square.style.backgroundColor = player1.color : square.style.backgroundColor = player2.color
         //push the id of selected square to current player's positions array
@@ -47,9 +58,15 @@ function handleClick(e) {
           player1.color = ""  //remove color so players can not change squares anymore
           player2.color = ""
           displayWinner()  //display winner
+          winSound.play()  // play win sound
+          currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() // add 1 to current players wins
+          currentPlayerTurn === 1 ? displayWinCountPlayer1.textContent = `Player 1: ${player1.wins}` : displayWinCountPlayer2.textContent = `Player 2: ${player2.wins}`
+          console.log(player1.wins)
+          console.log(player2.wins)
           startNewGame()  //start a new game
         } else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
           displayTie()
+          tieSound.play() 
           startNewGame()
         }else {//if no winner yet:
         //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
