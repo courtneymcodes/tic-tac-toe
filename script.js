@@ -60,9 +60,8 @@ function handleClick(e) {
           displayWinner()  //display winner
           winSound.play()  // play win sound
           currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() // add 1 to current players wins
+          //add a win to the current players win count
           currentPlayerTurn === 1 ? displayWinCountPlayer1.textContent = `Player 1: ${player1.wins}` : displayWinCountPlayer2.textContent = `Player 2: ${player2.wins}`
-          console.log(player1.wins)
-          console.log(player2.wins)
           startNewGame()  //start a new game
         } else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
           displayTie()
