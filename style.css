@@ -7,12 +7,17 @@ body {
     align-items: center;
 }
 
+
+
+
+/* colors game style */
+
 #title {
     font-size: 75px;
 }
 
-/* create a row containing #current, #board and #wins */
-#container {
+
+#board-stats-container {   /* create a row containing #current, #board and #wins */
     display:flex;
     font-size: 30px;
 }
@@ -61,4 +66,50 @@ body {
 
 .squares:hover{
     opacity: .9;
+}
+
+
+
+/* underwater game styles */
+
+#underwater-game-container {
+    width: 100vw;  /* set element to size of the window */
+    height: 100vh;
+    background-image: url('images/blueBackground.jpg');
+    background-size: cover;  /*make sure background covers the entire element */
+    color:aquamarine; /* chang ecolor of all text in child elements */
+}
+
+#title2 {
+    font-size:75px;
+    text-align: center;
+}
+
+#board-stats-container2 {  /* align in a row */
+    display:flex;
+    justify-content: center;
+    font-size: 30px;
+}
+
+#current-displays2 {
+   text-align: center;  /*center image*/
+}
+
+#board2 {  /* create 3 x 3 grid */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 30px;
+}
+
+.squares2 {
+width:150px;
+height: 150px;
+background-color: whitesmoke;
+border: 3px solid black;
+}
+
+
+#current-image-display {
+    width: 75px;
+    height: 75px;
 }
