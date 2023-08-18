@@ -14,13 +14,18 @@ let player2 = new Player('green')
 //player 1 goes first
 let currentPlayerTurn = 1
 
+//variable to track if a player has won 
+let playerWon = false
+
 const allSquares = document.querySelectorAll('.squares')
 const currentTurnDisplay = document.querySelector('#current-turn-display')
 const currentColorDisplay = document.querySelector('#current-color-display')
+const newGameButton = document.querySelector('#new-game')
 
 startGame();
 
 function startGame() {
+  console.log(playerWon)
   allSquares.forEach((square, index) => {
     square.id = index  //give each square an id of index
     square.addEventListener('click', handleClick) //add event listener to each square
@@ -39,9 +44,13 @@ function handleClick(e) {
         currentPlayerTurn === 1 ? checkWinner(player1) : checkWinner(player2)
         //when player wins, displayWinner else update current player display
         if(playerWon === true){
-          displayWinner()
+          player1.color = ""  //remove color so players can not change squares anymore
+          player2.color = ""
+          displayWinner()  //display winner
+          startNewGame()  //start a new game
         } else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
           displayTie()
+          startNewGame()
         }else {//if no winner yet:
         //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
         currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
@@ -53,9 +62,6 @@ function handleClick(e) {
 
 //indexes player needs in player.positions to win
 const winningCombinations = ['012', '345', '678', '036', '147', '258', '048', '246']
-
-//variable to track if a player has won 
-let playerWon = false
 
 function checkWinner(player) {
 let currentPlayerPositions = player.positions  //get array of current player's positions
@@ -90,7 +96,6 @@ function displayWinner() {
   //replace cuurentTurnDisplay with winning message
   if(currentPlayerTurn === 1){
       currentTurnDisplay.textContent = "Player 1 wins!"
-      console.log(currentTurnDisplay.textContent)
     }else {
       //if player 2's turn, update displays to player 2
       currentTurnDisplay.textContent = "Player 2 wins!"
@@ -99,4 +104,26 @@ function displayWinner() {
 
 function displayTie() {
   currentTurnDisplay.textContent = "It's a tie"
+}
+
+function startNewGame() {
+//show newGame button
+newGameButton.style.display = 'flex'
+//when clicked
+newGameButton.addEventListener('click', () => {
+  allSquares.forEach((square) => {
+    square.removeEventListener('click', handleClick)//remove existing event listener from each square
+    square.style.backgroundColor = "" //remove background color from each square to reset the game board
+    player1.positions = []  //remove id's from player.positions array
+    player2.positions = []
+    //this changes the current player so the losing player will go first
+    currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
+    currentPlayerDisplays(currentPlayerTurn) //update current player turn display
+    startGame() //start the game
+    player1.color = 'red'  //assign colors back to players after new game starts
+    player2.color = 'green'
+    playerWon = false //set playerWon back to false
+  })
+})
+
 }
