@@ -1,12 +1,23 @@
 body {
     padding: 0;
     margin: 0; 
-    background-color:lightslategray;
+    background-color:white;
     display: flex;
     flex-direction: column;  /* #title h1 and #container div  */
     align-items: center;
 }
 
+/* choose game screen */
+#choose-game {
+    text-align:center;
+    margin-top:10%;
+}
+
+.choose-buttons {
+    padding:3px;
+    border-radius: 5px;
+    margin:5px;
+}
 
 
 
@@ -14,25 +25,26 @@ body {
 
 #title {
     font-size: 65px;
+    text-align:center;
+    margin-left: 15px;
 }
 
 
 #board-stats-container {   /* create a row containing #current, #board and #wins */
     display:flex;
-    font-size: 30px;
 }
 
 #board {
     display:flex;
     flex-wrap:wrap;
-    width: 399px;  /* (div width*3) + outline + border */
-    height: 399px;  
+    width: 387px;  /* (div width*3) + outline + border */
+    height: 387px;  
     margin: 30px;
-    
+    border: 2px black solid;
 }
 
 #current-displays {
-    font-size: 35px;
+    font-size: 30px;
     display:flex;
     flex-direction: column;
     align-items:center;  /* center its contents*/
@@ -45,15 +57,16 @@ body {
 }
 
 #wins {
-    font-size: 25px;
+    font-size: 20px;
+    margin-top: 10px;
 }
 
 .squares {
-    background-color:whitesmoke;
-    border: 3px lightslategray solid;
+    background-color:white;
+    border: 2px black solid;
     width: 125px;
     height: 125px;
-    outline: 2px whitesmoke solid;
+    /* outline: 2px black solid; */
 }
 
 #new-game {
@@ -65,7 +78,7 @@ body {
 }
 
 .squares:hover{
-    opacity: .9;
+    background-color:rgb(235,235,235);
 }
 
 
@@ -83,18 +96,19 @@ body {
 #title2 {
     font-size:65px;
     text-align: center;
+    margin-left:10px;
 }
 
 #board-stats-container2 {  /* align in a row */
     display:flex;
     justify-content: center;
-    font-size: 30px;
 }
 
 #current-displays2 {
     display:flex;
     flex-direction: column;
     align-items: center; /*center divs contents horizontally*/
+    font-size: 30px;
 }
 
 #board2 {  /* create 3 x 3 grid */
@@ -114,6 +128,10 @@ border: 3px solid black;
 #current-image-display {
     width: 75px;
     height: 75px;
+}
+
+#wins2 {
+    font-size: 20px;
 }
 
 

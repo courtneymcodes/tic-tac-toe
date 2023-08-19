@@ -25,6 +25,7 @@ let playerWon = false
 const winSound = new Audio('sound/win.wav')
 const clickSound = new Audio('sound/clickSquare.wav')
 const tieSound = new Audio('sound/tie.mp3')
+const bubbleSound = new Audio('sound/bubble.wav')
 
 const allSquares = document.querySelectorAll('.squares')
 const currentTurnDisplay = document.querySelector('#current-turn-display')
@@ -36,6 +37,7 @@ const displayWinCountPlayer2 = document.querySelector('#win-count-p2')
 startGame();
 
 function startGame() {
+  newGameButton.style.display = 'none'  //hide new game button
   allSquares.forEach((square, index) => {
     square.id = index  //give each square an id of index
     square.addEventListener('click', handleClick) //add event listener to each square
@@ -95,7 +97,7 @@ winningCombinations.forEach((combination) => {
 })  
 }
 
-function currentPlayerDisplays(currentPlayerTurn){
+function currentPlayerDisplays(){
   //if player 1's turn update displays to player 1
 if(currentPlayerTurn === 1){
   currentTurnDisplay.textContent = "Player 1's turn"

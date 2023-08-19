@@ -27,6 +27,8 @@ startGame2()
 
 //change the squares image src to the players image
 function startGame2() {
+  currentPlayerTurn === 1 ? currentImageDisplay.src = fish1.image : currentImageDisplay.src = fish2.image //add image to curent turn display when game starts
+  newGameButton2.style.display = 'none'  //hide new game button
   allSquares2.forEach((square, index) => {
     square.id = index  //give each img an id of index
     square.addEventListener('click', handleClick2)  //add event listener to eahc sqaure
@@ -38,6 +40,7 @@ function handleClick2(e) {
   const square = e.target
   //if the clicked square images src is blank 
   if (square.src.endsWith('images/blankSquare.png')) {  //sqaure.src returns the absolute path, we only want the relative path
+    bubbleSound.play()
     if(currentPlayerTurn === 1) {  //if it's player1's turn
       square.src = fish1.image  //add player1's image to square if its their turn
       fish1.positions.push(square.id) //push the square's id to player1's positions array
