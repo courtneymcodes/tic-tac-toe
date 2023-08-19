@@ -123,15 +123,15 @@ function displayTie() {
 }
 
 function startNewGame() {
+  player1.positions = []  //remove id's from player.positions array
+  player2.positions = []
+  allSquares.forEach(square => square.removeEventListener('click', handleClick))//remove existing event listener from each square)
 //show newGame button
 newGameButton.style.display = 'flex'
 //when clicked
 newGameButton.addEventListener('click', () => {
   allSquares.forEach((square) => {
-    square.removeEventListener('click', handleClick)//remove existing event listener from each square
     square.style.backgroundColor = "" //remove background color from each square to reset the game board
-    player1.positions = []  //remove id's from player.positions array
-    player2.positions = []
     //this changes the current player so the losing player will go first
     currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
     currentPlayerDisplays(currentPlayerTurn) //update current player turn display

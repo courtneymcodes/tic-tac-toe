@@ -95,14 +95,16 @@ function displayTie2() {
 }
 
 function startNewGame2() {
-  newGameButton2.style.display = ''  //unhide new game button
+  fish1.positions = []//reset both players occupied spaces back to empty
+  fish2.positions = []
+  newGameButton2.style.display = 'flex'  //unhide new game button
+  //remove event listeners from squares to prevent players from beign able to continue adding their fish to square
+  allSquares2.forEach(square =>  square.removeEventListener('click', handleClick2)) 
   
-  newGameButton2.addEventListener('click', () => {  ///when new game button clicked:
+  //when new game button clicked:
+  newGameButton2.addEventListener('click', () => {  
     allSquares2.forEach(square => {
       square.src = 'images/blankSquare.png'  //make squares blank again by setting the image src back to blank square
-      square.removeEventListener('click', handleClick2)  //remove event listeners from squares
-      fish1.positions = []//reset both players occupied spaces back to empty
-      fish2.positions = []
       //switch turn to other player so the loser goes first
       if(currentPlayerTurn === 1) { //if it's player 1's turn, set current turn to player 2
         currentPlayerTurn === 2
@@ -114,6 +116,8 @@ function startNewGame2() {
       fish1.image = 'images/blueFish.jpg'  //change player images from blank back to fish
       fish2.image = 'images/stripedFish.jpg'
       playerWon = false  //reset playerWon to false
+    
     })
 })
+playerWon = false
 }

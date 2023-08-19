@@ -92,7 +92,9 @@ body {
 }
 
 #current-displays2 {
-   text-align: center;  /*center image*/
+    display:flex;
+    flex-direction: column;
+    align-items: center; /*center divs contents horizontally*/
 }
 
 #board2 {  /* create 3 x 3 grid */
@@ -112,4 +114,16 @@ border: 3px solid black;
 #current-image-display {
     width: 75px;
     height: 75px;
+}
+
+
+
+
+/*starts off hidden, unhide when game ends*/
+#new-game2 {
+    display: none  ;
+    margin-top: 30px;
+    padding: 1em;
+    border-radius: 1em;
+    background-color:aquamarine;
 }
