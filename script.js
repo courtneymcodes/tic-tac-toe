@@ -1,7 +1,7 @@
 
 class Player {
-  constructor(color) {
-      this.color = color,
+  constructor(image) {
+      this.image = image,
       this.positions = [],
       this.wins = 0
   }
@@ -12,8 +12,8 @@ class Player {
 }
 
 //create players
-let player1 = new Player('red')
-let player2 = new Player('green')
+let player1 = new Player('images/greenSquare.png')
+let player2 = new Player('images/redSquare.png')
 
 //player 1 goes first
 let currentPlayerTurn = 1
@@ -46,35 +46,37 @@ function startGame() {
 
 function handleClick(e) {
   const square = e.target
-      //make sure clicked square has not been clicked yet
-      if (square.style.backgroundColor === "") {
+  //make sure clicked square has not been clicked yet
+  if (square.src.endsWith('images/blankSquare.png')) {
+        console.log(square)
         clickSound.play()  //play sound when click on square
-        //if its player 1's turn, turn square to player1Color, else turn it to player2's color
-        currentPlayerTurn === 1 ? square.style.backgroundColor = player1.color : square.style.backgroundColor = player2.color
-        //push the id of selected square to current player's positions array
-        currentPlayerTurn === 1 ? player1.positions.push(square.id) : player2.positions.push(square.id)
-        //if player1's turn, check if player1 has won. If not then its player2's turn, check if player2 has won
-        currentPlayerTurn === 1 ? checkWinner(player1) : checkWinner(player2)
-        //when player wins, displayWinner else update current player display
-        if(playerWon === true){
-          player1.color = ""  //remove color so players can not change squares anymore
-          player2.color = ""
-          displayWinner()  //display winner
-          winSound.play()  // play win sound
-          currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() // add 1 to current players wins
-          //add a win to the current players win count
-          currentPlayerTurn === 1 ? displayWinCountPlayer1.textContent = `Player 1: ${player1.wins}` : displayWinCountPlayer2.textContent = `Player 2: ${player2.wins}`
-          startNewGame()  //start a new game
-        } else if(player1.positions.length + player2.positions.length === 9) { //there is a tie if no winner and all spaces are occupied
-          displayTie()
-          tieSound.play() 
-          startNewGame()
-        }else {//if no winner yet:
-        //if its player 1's turn, set currentPlayerTurn to 2, else setCurrentPlayer turn to 1
-        currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
-        //call currentPlayerDisplays functions to updat ecurrent player display
-        currentPlayerDisplays(currentPlayerTurn)
+        if(currentPlayerTurn === 1) {  //if it's player1's turn
+          square.src = player1.image  //add player1's image to square if its their turn
+          player1.positions.push(square.id) //push the square's id to player1's positions array
+          checkWinner(player1)  //check if winner
+        }else {  //if it's player 2's turn
+          square.src = player2.image  //add player2's image to square if its their turn
+          player2.positions.push(square.id)  //push id to positions array
+          checkWinner(player2)    
         }
+
+        if(playerWon === true){  // if player has won
+          player1.image = 'images/blankSquare.png' //stop players from being able to change squares
+          fish2.image = 'images/blankSquare.png'
+          displayWinner()
+          winSound.play()
+          currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() //add win to current players win count
+          //update win count display
+          currentPlayerTurn === 1 ? displayWinCountPlayer1.textContent = `Player 1: ${player1.wins}` : displayWinCountPlayer2.textContent = `Player 2: ${player2.wins}`
+          startNewGame()
+        }else if(player1.positions.length + player2.positions.length === 9){  //if tie
+          displayTie()
+          tieSound.play()
+          startNewGame()
+      }else {  //no winner yet
+        currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1  //change to next players turn
+        currentPlayerDisplays() //update display of whose turn it is
+      }
       }
     }
 
@@ -101,11 +103,11 @@ function currentPlayerDisplays(){
   //if player 1's turn update displays to player 1
 if(currentPlayerTurn === 1){
   currentTurnDisplay.textContent = "Player 1's turn"
-  currentColorDisplay.style.backgroundColor = player1.color
+  currentColorDisplay.src = player1.image
 }else {
   //if player 2's turn, update displays to player 2
   currentTurnDisplay.textContent = "Player 2's turn"
-  currentColorDisplay.style.backgroundColor = player2.color
+  currentColorDisplay.src = player2.image
 }
 }
 
@@ -133,13 +135,13 @@ newGameButton.style.display = 'flex'
 //when clicked
 newGameButton.addEventListener('click', () => {
   allSquares.forEach((square) => {
-    square.style.backgroundColor = "" //remove background color from each square to reset the game board
+    square.src = "images/blankSquare.png" //remove background color from each square to reset the game board
     //this changes the current player so the losing player will go first
     currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
     currentPlayerDisplays(currentPlayerTurn) //update current player turn display
     startGame() //start the game
-    player1.color = 'red'  //assign colors back to players after new game starts
-    player2.color = 'green'
+    player1.image = 'images/greenSquare.png'  //assign colors back to players after new game starts
+    player2.image = 'images/redSquare.png'
     playerWon = false //set playerWon back to false
   })
 })
