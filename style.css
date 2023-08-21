@@ -20,27 +20,31 @@ body {
 }
 
 
-
 /* colors game style */
 
+#game-container {
+    width: 100vw;  /* set element to size of the window */
+    height: 100vh;
+    background-size: cover;  /*make sure background covers the entire element */
+    font-weight: 900;
+    text-shadow: 1px 1px black;
+}
+
+#board-stats-container {
+    display:flex;
+    justify-content: center;
+}
+
 #title {
-    font-size: 65px;
-    text-align:center;
-    margin-left: 15px;
+    font-size:65px;
+    text-align: center;
+    margin-left:10px;
 }
 
-
-#board-stats-container {   /* create a row containing #current, #board and #wins */
-    display:flex;
-}
-
-#board {
-    display:flex;
-    flex-wrap:wrap;
-    width: 387px;  /* (div width*3) + outline + border */
-    height: 387px;  
+#board {  /* create 3 x 3 grid */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     margin: 30px;
-    border: 2px black solid;
 }
 
 #current-displays {
@@ -50,10 +54,10 @@ body {
     align-items:center;  /* center its contents*/
 }
 
-#current-color-display {
-    background-color:red;
+#current-image-display {
     width: 75px;
     height: 75px;
+    border: 2px black solid;
 }
 
 #wins {
@@ -66,82 +70,43 @@ body {
     border: 2px black solid;
     width: 125px;
     height: 125px;
-    /* outline: 2px black solid; */
+    outline: 2px black solid;
 }
+
 
 #new-game {
     margin-top: 30px;
     padding: 1em;
     border-radius: 1em;
-    background-color:whitesmoke;
-    display: none;  /* starts off hidden */
+    display: none;  /*starts off hidden, unhide when game ends*/
 }
 
 .squares:hover{
-    background-color:rgb(235,235,235);
+    opacity:.9;
 }
 
 
+/* colors game styles*/
+
+.colors-container {
+  background-image: url('images/colorBackground.jpg');
+  color:#fc5b2e; /* change color of all text in child elements */
+  
+}
+
+.new-game-button-colors {
+    background-color:#67c7ed;
+}
 
 /* underwater game styles */
 
-#underwater-game-container {
-    width: 100vw;  /* set element to size of the window */
-    height: 100vh;
-    background-image: url('images/blueBackground.jpg');
-    background-size: cover;  /*make sure background covers the entire element */
-    color:aquamarine; /* chang ecolor of all text in child elements */
-}
-
-#title2 {
-    font-size:65px;
-    text-align: center;
-    margin-left:10px;
-}
-
-#board-stats-container2 {  /* align in a row */
-    display:flex;
-    justify-content: center;
-}
-
-#current-displays2 {
-    display:flex;
-    flex-direction: column;
-    align-items: center; /*center divs contents horizontally*/
-    font-size: 30px;
-}
-
-#board2 {  /* create 3 x 3 grid */
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    margin: 30px;
-}
-
-.squares2 {
-width:125px;
-height: 125px;
-background-color: whitesmoke;
-border: 3px solid black;
+.underwater-container { 
+    background-image: url('images/blueBackground.jpg');  /* chnage the color of the games background */
+    color:aquamarine; /* change ecolor of all text in child elements */
+    font-weight: 900;
 }
 
 
-#current-image-display {
-    width: 75px;
-    height: 75px;
-}
-
-#wins2 {
-    font-size: 20px;
-}
-
-
-
-
-/*starts off hidden, unhide when game ends*/
-#new-game2 {
-    display: none  ;
-    margin-top: 30px;
-    padding: 1em;
-    border-radius: 1em;
+.new-game-button-underwater{
     background-color:aquamarine;
 }

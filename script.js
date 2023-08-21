@@ -1,4 +1,23 @@
+//add sound effects
+const winSound = new Audio('sound/win.wav')
+const clickSound = new Audio('sound/clickSquare.wav')
+const tieSound = new Audio('sound/tie.mp3')
+const bubbleSound = new Audio('sound/bubble.wav')
 
+//select elements
+const chooseGameContainer = document.querySelector('#choose-game')
+const gameContainer = document.querySelector('#game-container')
+const colorsGameButton = document.querySelector('#colors-button')
+const underwaterGameButton = document.querySelector('#underwater-button')
+
+const allSquares = document.querySelectorAll('.squares')
+const currentTurnDisplay = document.querySelector('#current-turn-display')
+const currentImageDisplay = document.querySelector('#current-image-display')
+const newGameButton = document.querySelector('#new-game')
+const displayWinCountPlayer1 = document.querySelector('#win-count-p1')
+const displayWinCountPlayer2 = document.querySelector('#win-count-p2')
+
+//create player class
 class Player {
   constructor(image) {
       this.image = image,
@@ -11,28 +30,46 @@ class Player {
   }
 }
 
-//create players
-let player1 = new Player('images/greenSquare.png')
-let player2 = new Player('images/redSquare.png')
+//initialize player 1 and player 2 variables
+let player1;  
+let player2;
 
-//player 1 goes first
+//keep track of whose turn it is; player 1 goes first
 let currentPlayerTurn = 1
 
-//variable to track if a player has won 
+//variable used to track if a player has won 
 let playerWon = false
 
-//add sound effects
-const winSound = new Audio('sound/win.wav')
-const clickSound = new Audio('sound/clickSquare.wav')
-const tieSound = new Audio('sound/tie.mp3')
-const bubbleSound = new Audio('sound/bubble.wav')
+//hide all of the game elements initially
+gameContainer.style.display = 'none'
 
-const allSquares = document.querySelectorAll('.squares')
-const currentTurnDisplay = document.querySelector('#current-turn-display')
-const currentColorDisplay = document.querySelector('#current-color-display')
-const newGameButton = document.querySelector('#new-game')
-const displayWinCountPlayer1 = document.querySelector('#win-count-p1')
-const displayWinCountPlayer2 = document.querySelector('#win-count-p2')
+//add event listener to both  game choice buttons
+colorsGameButton.addEventListener('click', handleColorClick)  //color game choice
+underwaterGameButton.addEventListener('click', handleUnderwaterClick)  //underwater game choice
+
+//when colors game is chosen
+function handleColorClick() { 
+  chooseGameContainer.style.display = 'none'  //hide game choices elements currently displayed
+  gameContainer.style.display = ''  //unhide colors game elements to start game
+  player1 = new Player('images/greenSquare.png')  //create green player
+  player2 = new Player('images/redSquare.png')  //create red player
+  gameContainer.classList.add('colors-container')  //add class to change game background and text color
+  newGameButton.classList.add('new-game-button-colors')  //add class to style new game button
+  currentImageDisplay.src = player1.image  //show player 1's image in current player display initially
+}
+
+
+//when unerwater game is chosen
+function handleUnderwaterClick() {
+  chooseGameContainer.style.display = 'none'
+  gameContainer.style.display = ''
+  player1 = new Player('images/blueFish.jpg')
+  player2 = new Player('images/stripedFish.jpg')
+  gameContainer.classList.add('underwater-container')
+  newGameButton.classList.add('new-game-button-underwater')
+  currentImageDisplay.src = player1.image
+}
+
 
 startGame();
 
@@ -48,7 +85,6 @@ function handleClick(e) {
   const square = e.target
   //make sure clicked square has not been clicked yet
   if (square.src.endsWith('images/blankSquare.png')) {
-        console.log(square)
         clickSound.play()  //play sound when click on square
         if(currentPlayerTurn === 1) {  //if it's player1's turn
           square.src = player1.image  //add player1's image to square if its their turn
@@ -62,7 +98,7 @@ function handleClick(e) {
 
         if(playerWon === true){  // if player has won
           player1.image = 'images/blankSquare.png' //stop players from being able to change squares
-          fish2.image = 'images/blankSquare.png'
+          player2.image = 'images/blankSquare.png'
           displayWinner()
           winSound.play()
           currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() //add win to current players win count
@@ -103,11 +139,11 @@ function currentPlayerDisplays(){
   //if player 1's turn update displays to player 1
 if(currentPlayerTurn === 1){
   currentTurnDisplay.textContent = "Player 1's turn"
-  currentColorDisplay.src = player1.image
+  currentImageDisplay.src = player1.image
 }else {
   //if player 2's turn, update displays to player 2
   currentTurnDisplay.textContent = "Player 2's turn"
-  currentColorDisplay.src = player2.image
+  currentImageDisplay.src = player2.image
 }
 }
 
