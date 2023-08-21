@@ -63,7 +63,7 @@ function handleColorClick() {
 function handleUnderwaterClick() {
   chooseGameContainer.style.display = 'none'
   gameContainer.style.display = ''
-  player1 = new Player('images/blueFish.jpg')
+  player1 = new Player('images/blueFish.png')
   player2 = new Player('images/stripedFish.jpg')
   gameContainer.classList.add('underwater-container')
   newGameButton.classList.add('new-game-button-underwater')
@@ -97,8 +97,7 @@ function handleClick(e) {
         }
 
         if(playerWon === true){  // if player has won
-          player1.image = 'images/blankSquare.png' //stop players from being able to change squares
-          player2.image = 'images/blankSquare.png'
+          allSquares.forEach(square => square.removeEventListener('click', handleClick))  //remove event listener so players can no longer change squares
           displayWinner()
           winSound.play()
           currentPlayerTurn === 1 ? player1.addWin() : player2.addWin() //add win to current players win count
@@ -165,7 +164,6 @@ function displayTie() {
 function startNewGame() {
   player1.positions = []  //remove id's from player.positions array
   player2.positions = []
-  allSquares.forEach(square => square.removeEventListener('click', handleClick))//remove existing event listener from each square)
 //show newGame button
 newGameButton.style.display = 'flex'
 //when clicked
@@ -174,12 +172,11 @@ newGameButton.addEventListener('click', () => {
     square.src = "images/blankSquare.png" //remove background color from each square to reset the game board
     //this changes the current player so the losing player will go first
     currentPlayerTurn === 1 ? currentPlayerTurn = 2 : currentPlayerTurn = 1
-    currentPlayerDisplays(currentPlayerTurn) //update current player turn display
+    currentPlayerDisplays() //update current player turn display
     startGame() //start the game
-    player1.image = 'images/greenSquare.png'  //assign colors back to players after new game starts
-    player2.image = 'images/redSquare.png'
+    player1.image = player1.image  //assign colors back to players after new game starts
+    player2.image = player2.image
     playerWon = false //set playerWon back to false
   })
 })
-
 }

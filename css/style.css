@@ -1,0 +1,214 @@
+
+/*styles for larger screens / PC */
+@media(min-width: 761px) {
+
+body {
+    padding: 0;
+    margin: 0; 
+    background-color:white;
+    display: flex;
+    flex-direction: column;  /* #title h1 and #container div  */
+    align-items: center;
+}
+
+/* choose game screen */
+#choose-game {
+    text-align:center;
+    margin-top:10%;
+}
+
+.choose-buttons {
+    padding:3px;
+    border-radius: 5px;
+    margin:5px;
+}
+
+
+/* game style */
+
+#game-container {
+    width: 100vw;  /* set element to size of the window */
+    height: 100vh;
+    background-size: cover;  /*make sure background covers the entire element */
+    font-weight: 900;
+    text-shadow: 1px 1px black;
+}
+
+#board-stats-container {
+    display:flex;
+    justify-content: center;
+}
+
+#title {
+    font-size:65px;
+    text-align: center;
+    margin-left:10px;
+}
+
+#board {  /* create 3 x 3 grid */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 30px;
+}
+
+#current-displays {
+    font-size: 30px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;  /* center its contents*/
+}
+
+#current-image-display {
+    width: 75px;
+    height: 75px;
+    border: 2px black solid;
+}
+
+#wins {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.squares {
+    background-color:white;
+    border: 2px black solid;
+    width: 125px;
+    height: 125px;
+    outline: 2px black solid;
+}
+
+
+#new-game {
+    margin-top: 30px;
+    padding: 1em;
+    border-radius: 1em;
+    display: none;  /*starts off hidden, unhide when game ends*/
+}
+
+.squares:hover{
+    opacity:.9;
+}
+
+}
+
+              
+
+/* style for smaller screens / mobile users */
+
+/* window width less than 760px: */
+@media(max-width: 760px) {
+
+  body{
+    background-color:white;
+  }
+
+  #choose-game {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+  }
+
+ 
+  .choose-buttons {
+    margin:5px; /* put space around button */
+  }
+
+  #game-container {
+    width:100vw;
+    height: 100vh;
+    background-size: cover;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    text-shadow: 1px 1px black;
+  }
+
+  #board-stats-container {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    font-weight:900;
+  }
+
+  #board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap:0;
+    width:60%;
+  }
+
+  .squares {
+    width:100%;   /* make images fill board squares */
+    height:100%;
+    background-size: cover;
+    border: 2px black solid;
+    outline: 2px black solid;
+  }
+
+  #current-displays {
+    width:100%;
+    display:flex;
+    flex-direction: row;
+    margin-bottom:5px;
+  }
+
+  #current-turn-display {
+    margin-left: 16%;
+    margin-right: 5%;
+    font-size:20px;
+  }
+
+  #current-image-display {
+   width:15%;
+}
+
+#new-game {
+    height: 50%;
+    display:flex;
+    align-self:center;
+    border-radius: 5px;
+    margin-left: 2%;
+}
+
+#wins {
+    display:flex;
+    justify-content:space-around;
+    font-size: 1em;
+}
+
+#win-count-p1{
+    margin-left: 2em;
+    margin-right: 1em;
+}
+
+/* change color of wins display only for color game and samll screens so that is darker*/
+.colors-container #wins {
+    color:#1875C7;
+  }
+
+    }
+
+
+/* game styles - same fore all screen sizes*/
+
+/* colors game styles*/
+.colors-container {
+    background-image: url('../images/colorBackground.jpg');
+    color:#fc5b2e; /* change color of all text in child elements */
+  }
+  
+  .new-game-button-colors {
+      background-color:#67c7ed;
+  }
+
+  /* underwater game styles */
+.underwater-container { 
+    background-image: url('../images/blueBackground.jpg');  /* chnage the color of the games background */
+    color:aquamarine; /* change ecolor of all text in child elements */
+    font-weight: 900;
+}
+
+.new-game-button-underwater{
+    background-color:aquamarine;
+}
+
