@@ -9,7 +9,7 @@ This game is a twist on the classic tic tac toe game and uses images and colors 
 
 ## Wireframe
 
-![wireframe](https://github.com/courtneymcodes/practice-readme/assets/63630567/e7d077f7-2f98-4ad2-8bbb-5f734e90309f)
+![wireframe](https://github.com/courtneymcodes/tic-tac-toe/assets/63630567/25bcefc0-4f65-4cc2-91dd-48ca8230e2a3)
 
 ## Installation
 This game does not require installation. It can be played in any web browser. It is deployed here: https://tictactoegamesapp.netlify.app/
@@ -18,15 +18,16 @@ This game does not require installation. It can be played in any web browser. It
 
 larger screen:
 
-![large-underwater-win](https://github.com/courtneymcodes/practice-readme/assets/63630567/014ab006-921e-46b5-9820-e2db1eda830a)
+![large-underwater-win](https://github.com/courtneymcodes/tic-tac-toe/assets/63630567/ba56a14d-2b83-4b65-8792-092c6b9bd5c9)
 
 
-![large-colors](https://github.com/courtneymcodes/practice-readme/assets/63630567/1d15c9c5-6ff5-483d-9484-931082f305db)
+![large-colors](https://github.com/courtneymcodes/tic-tac-toe/assets/63630567/aac7912a-e9d3-4d52-931b-fd695d71b445)
+
 
 smaller screen: 
 
+![mobile](https://github.com/courtneymcodes/tic-tac-toe/assets/63630567/51cc555f-4b7c-4c52-be49-08078767c75b)
 
-![mobile](https://github.com/courtneymcodes/practice-readme/assets/63630567/f0609b83-36f0-48a5-a761-ed8fd8a1cb46)
 
 ## MVP Features
 - Keeps track of current player's turn and displays whose turn it is.
