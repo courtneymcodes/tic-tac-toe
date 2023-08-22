@@ -191,6 +191,10 @@ function navigateHome() {
   chooseGameContainer.style.display = ''//unhide game choices
   player1.positions = []  //remove id's from player.positions array
   player2.positions = []
+  gameContainer.classList.remove('colors-container')
+  gameContainer.classList.remove('underwater-container')
+  newGameButton.classList.remove('new-game-button-colors')
+  newGameButton.classList.remove('new-game-button-underwater')
   allSquares.forEach(square => {
     square.src = "images/blankSquare.png"  //reset the game board squares
   })
