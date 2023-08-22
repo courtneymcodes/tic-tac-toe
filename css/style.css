@@ -191,6 +191,13 @@ body {
 
 /* game styles - same fore all screen sizes*/
 
+#home-button {
+  background-color:white;
+  border-radius: 5px;
+  margin-left: 80%;
+  margin-top:2%;
+}
+
 /* colors game styles*/
 .colors-container {
     background-image: url('../images/colorBackground.jpg');

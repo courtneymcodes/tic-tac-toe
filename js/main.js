@@ -16,6 +16,7 @@ const currentImageDisplay = document.querySelector('#current-image-display')
 const newGameButton = document.querySelector('#new-game')
 const displayWinCountPlayer1 = document.querySelector('#win-count-p1')
 const displayWinCountPlayer2 = document.querySelector('#win-count-p2')
+const homeButton = document.querySelector('#home-button')
 
 //create player class
 class Player {
@@ -179,4 +180,19 @@ newGameButton.addEventListener('click', () => {
     playerWon = false //set playerWon back to false
   })
 })
+}
+
+
+//show game choices if player clicks on home button and reset the game
+homeButton.addEventListener('click', navigateHome)
+
+function navigateHome() {
+  gameContainer.style.display = 'none'  //hide game
+  chooseGameContainer.style.display = ''//unhide game choices
+  player1.positions = []  //remove id's from player.positions array
+  player2.positions = []
+  allSquares.forEach(square => {
+    square.src = "images/blankSquare.png"  //reset the game board squares
+  })
+  
 }
